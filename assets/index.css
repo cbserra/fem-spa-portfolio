@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply flex flex-col items-center justify-center gap-y-8 p-4 font-sans text-black;
+  }
+
+  header,
+  footer {
+    @apply flex w-full justify-between;
+  }
+
+  header svg,
+  footer svg {
+    @apply w-1/2;
+  }
+
+  button {
+    @apply rounded-[28px] bg-black py-2 px-7 text-sm font-bold text-light-cream;
+  }
+
+  nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, minmax(180px, 1fr));
+    gap: 24px 25px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "graphic-design graphic-design"
+      "graphic-design graphic-design"
+      "ui-ux apps"
+      "illustrations illustrations"
+      "photography photography"
+      "motion-graphics motion-graphics";
+    width: 100%;
+  }
+
+  nav div {
+    @apply flex flex-col items-start justify-end rounded-lg bg-[right_1.5rem_top_1.5rem] p-6 text-md font-bold text-light-cream;
+  }
+
+  main {
+    @apply flex flex-col items-center justify-center gap-y-24;
+  }
+
+  h1 {
+    @apply text-xl font-bold;
+  }
+
+  h2 {
+    @apply text-lg font-bold;
+  }
+
+  h3 {
+    @apply text-md font-bold;
+  }
+
+  p {
+    @apply text-body font-medium text-medium-brown;
+  }
+
+  ul {
+    @apply grid grid-cols-2 grid-rows-6 gap-4;
+  }
+
+  aside {
+    @apply flex w-full flex-col items-center justify-center gap-y-6 text-center;
+  }
+}
+
+@layer components {
+  .logo-container {
+    @apply h-12 w-12;
+  }
+
+  .graphic-design {
+    @apply bg-galactic-blue bg-graphic-design  bg-no-repeat;
+    grid-area: graphic-design;
+  }
+
+  .ui-ux {
+    @apply bg-summer-yellow bg-ui-ux  bg-no-repeat;
+    grid-area: ui-ux;
+  }
+
+  .apps {
+    @apply bg-pink bg-apps  bg-no-repeat;
+    grid-area: apps;
+  }
+
+  .illustrations {
+    @apply bg-light-red bg-illustrations  bg-no-repeat;
+    grid-area: illustrations;
+  }
+
+  .photography {
+    @apply bg-cyan bg-photography  bg-no-repeat;
+    grid-area: photography;
+  }
+
+  .motion-graphics {
+    @apply bg-burgundy bg-motion-graphics  bg-no-repeat;
+    grid-area: motion-graphics;
+  }
+
+  .amy-intro {
+    @apply mt-[76px];
+  }
+
+  .amy-img {
+    @apply mb-[40px] h-[300px] w-[300px];
+  }
+
+  .light-red-btn {
+    @apply bg-light-red;
+  }
+
+  .my-work {
+  }
+
+  .slider-container {
+    @apply relative w-full;
+  }
+
+  .slider {
+    @apply absolute flex w-full items-center justify-evenly gap-x-[15px] overflow-clip;
+  }
+
+  .slider img {
+    @apply h-[180px] w-[270px] rounded-[10px];
+  }
+
+  .book-call {
+    @apply rounded-[10px] bg-black py-12 px-6 text-light-cream;
+  }
+
+  .book-call p {
+    @apply text-light-cream;
+  }
+  /* 
+  .graphic-design {
+    @apply col-span-2 row-span-2 h-[364px] w-[343px] 
+  } */
+}
