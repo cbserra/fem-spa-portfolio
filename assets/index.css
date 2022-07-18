@@ -5,12 +5,45 @@
 @tailwind utilities;
 
 @layer base {
+  html,
   body {
-    @apply flex flex-col items-center justify-center gap-y-8 p-4 font-sans text-black;
+    @apply bg-light-cream font-sans text-black;
+    @apply overflow-x-hidden;
+  }
+
+  body {
+    @apply flex flex-col items-center justify-center gap-y-8;
+    @apply min-h-screen w-full;
+    /* @apply p-4; */
+    /* @apply md:px-[40px] md:pt-[34px] md:pb-14;
+    @apply lg:px-[164px] lg:pb-16; */
   }
 
   header,
+  footer,
+  nav,
+  main,
+  aside,
+  section {
+    @apply flex w-full max-w-screen-lg flex-col items-center justify-center gap-y-8 px-4;
+    @apply md:px-[40px];
+    @apply lg:px-[164px] lg:pb-16;
+  }
+
+  header {
+    @apply pt-4;
+    @apply md:pt-[34px];
+  }
+
   footer {
+    @apply pb-8;
+    @apply md:pb-14;
+    @apply lg:pb-16;
+  }
+
+  /* header, */
+  footer,
+  header {
     @apply flex w-full justify-between;
   }
 
@@ -20,23 +53,15 @@
   }
 
   button {
-    @apply rounded-[28px] bg-black py-2 px-7 text-sm font-bold text-light-cream;
+    @apply h-11 rounded-[28px] bg-black py-2 px-7 text-sm font-bold text-light-cream;
+    @apply md:h-14;
   }
 
   nav {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(6, minmax(180px, 1fr));
-    gap: 24px 25px;
-    grid-auto-flow: row;
-    grid-template-areas:
-      "graphic-design graphic-design"
-      "graphic-design graphic-design"
-      "ui-ux apps"
-      "illustrations illustrations"
-      "photography photography"
-      "motion-graphics motion-graphics";
-    width: 100%;
+    @apply grid w-full  items-stretch justify-items-stretch gap-x-6 gap-y-[25px];
+    @apply grid-flow-row-dense grid-cols-2 grid-rows-[repeat(6,_182px)];
+    @apply md:grid-flow-row-dense md:grid-cols-4 md:grid-rows-[repeat(3,_182px)];
+    @apply lg:grid-cols-6 lg:grid-rows-[repeat(2,_182px)];
   }
 
   nav div {
@@ -44,7 +69,7 @@
   }
 
   main {
-    @apply flex flex-col items-center justify-center gap-y-24;
+    @apply flex w-full flex-col items-center justify-center gap-y-24;
   }
 
   h1 {
@@ -63,9 +88,9 @@
     @apply text-body font-medium text-medium-brown;
   }
 
-  ul {
+  /* ul {
     @apply grid grid-cols-2 grid-rows-6 gap-4;
-  }
+  } */
 
   aside {
     @apply flex w-full flex-col items-center justify-center gap-y-6 text-center;
@@ -73,76 +98,148 @@
 }
 
 @layer components {
+  .header-container,
+  .footer-container {
+    @apply flex w-full justify-between;
+  }
   .logo-container {
     @apply h-12 w-12;
+    @apply md:h-16 md:w-16;
+  }
+
+  .intro {
+    @apply flex w-full flex-col items-center justify-center gap-y-4 text-center;
+    @apply md:gap-y-6;
   }
 
   .graphic-design {
     @apply bg-galactic-blue bg-graphic-design  bg-no-repeat;
-    grid-area: graphic-design;
+    @apply col-span-2 row-span-2;
+    @apply md:col-span-2 md:row-span-2;
+    @apply lg:col-span-2 lg:row-span-2;
   }
 
   .ui-ux {
     @apply bg-summer-yellow bg-ui-ux  bg-no-repeat;
-    grid-area: ui-ux;
+    @apply col-span-1 row-span-1;
+    @apply md:col-span-1 md:row-span-1;
   }
 
   .apps {
     @apply bg-pink bg-apps  bg-no-repeat;
-    grid-area: apps;
+    @apply col-span-1 row-span-1;
+    @apply md:col-span-1 md:row-span-1;
   }
 
   .illustrations {
     @apply bg-light-red bg-illustrations  bg-no-repeat;
-    grid-area: illustrations;
+    @apply col-span-2 row-span-1;
+    @apply md:col-span-2 md:row-span-1;
+    @apply lg:order-5;
   }
 
   .photography {
     @apply bg-cyan bg-photography  bg-no-repeat;
-    grid-area: photography;
+    @apply col-span-2 row-span-1;
+    @apply md:col-span-2 md:row-span-1;
+    @apply lg:order-4;
   }
 
   .motion-graphics {
     @apply bg-burgundy bg-motion-graphics  bg-no-repeat;
-    grid-area: motion-graphics;
+    @apply col-span-2 row-span-1;
+    @apply md:col-span-2 md:row-span-1;
+    @apply lg:order-6;
   }
 
   .amy-intro {
+    @apply flex flex-col items-center justify-center gap-y-8;
     @apply mt-[76px];
+    @apply md:flex-row md:gap-x-[69px];
   }
 
   .amy-img {
     @apply mb-[40px] h-[300px] w-[300px];
+    @apply md:-ml-11 md:h-[364px] md:w-[364px];
+    @apply lg:-ml-0;
   }
 
-  .light-red-btn {
-    @apply bg-light-red;
+  .amy-intro > div {
+    @apply flex w-full flex-col items-center justify-center gap-y-6 text-center;
+    @apply md:ml-auto md:w-1/2 md:items-start md:text-left;
   }
 
   .my-work {
+    @apply max-w-none px-0;
   }
 
-  .slider-container {
-    @apply relative w-full;
+  .light-red-btn {
+    @apply bg-light-red hover:bg-summer-yellow;
   }
 
-  .slider {
-    @apply absolute flex w-full items-center justify-evenly gap-x-[15px] overflow-clip;
+  .black-btn {
+    @apply bg-black hover:bg-galactic-blue;
   }
 
-  .slider img {
-    @apply h-[180px] w-[270px] rounded-[10px];
+  .carousel {
+    @apply relative -mx-4 flex h-full w-full flex-col items-center justify-center gap-y-14;
+    /* @apply lg:-mx-56; */
+  }
+
+  .carousel__track-container {
+    @apply relative -mx-4 flex h-[180px]  w-[110%] items-center justify-evenly;
+    @apply md:h-[360px];
+    /* @apply w-[200%]; */
+    /* @apply lg:-mx-56; */
+    @apply overflow-hidden;
+  }
+
+  .carousel__track {
+    @apply relative -mx-4 flex h-full w-full  items-center justify-evenly gap-x-[15px] transition-transform duration-500 ease-in-out;
+    @apply md:gap-x-[30px];
+    /* @apply lg:-mx-56; */
+
+    /* @apply overflow-hidden; */
+  }
+
+  .carousel__slide {
+    @apply relative top-0 bottom-0 h-full w-[270px];
+    @apply md:w-[540px];
+  }
+
+  .carousel__slide img {
+    @apply h-[180px] max-w-[270px] rounded-[10px];
+    @apply md:h-[360px] md:max-w-[540px];
+    @apply aspect-video object-cover;
+  }
+
+  .carousel__nav {
+    @apply flex w-full items-center justify-center gap-x-4;
+  }
+
+  .carousel__nav-btn {
+    @apply flex h-16 w-16 items-center justify-center rounded-[50%] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .carousel__nav-btn img {
+    @apply max-w-none;
+  }
+
+  .carousel-item {
+    @apply h-[160px] w-[270px];
   }
 
   .book-call {
-    @apply rounded-[10px] bg-black py-12 px-6 text-light-cream;
+    @apply flex w-full flex-col items-center justify-center rounded-[10px] bg-black py-12 px-6 text-light-cream;
+    @apply lg:flex-row lg:justify-between;
   }
 
-  .book-call p {
+  .book-call > .text {
+    @apply flex w-full flex-col items-center justify-center gap-y-6 text-center;
+    @apply lg:w-1/2  lg:text-left;
+  }
+
+  .book-call > .text > p {
     @apply text-light-cream;
   }
-  /* 
-  .graphic-design {
-    @apply col-span-2 row-span-2 h-[364px] w-[343px] 
-  } */
 }
