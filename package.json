@@ -2,14 +2,43 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "cross-env TAILWIND_MODE=watch vite",
-    "build": "cross-env TAILWIND_MODE=build vite build",
-    "serve": "vite preview"
+    "build": "cross-env TAILWIND_MODE=build tsc && vite build",
+    "commit": "commit",
+    "serve": "vite preview",
+    "lint:scripts": "eslint . --ext .js,.ts",
+    "lint:styles": "stylelint ./**/*.{css,scss}",
+    "format:scripts": "prettier . --write",
+    "format:styles": "stylelint ./**/*.{css,scss} --fix",
+    "format": "yarn format:scripts && yarn format:styles",
+    "prepare": "husky install && husky add .husky/pre-commit 'npx lint-staged' && git add .husky/pre-commit"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@commitlint/prompt-cli": "^17.0.3",
+    "autoprefixer": "^10.4.7",
     "cross-env": "^7.0.3",
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.12",
+    "stylelint": "^14.9.1",
+    "stylelint-config-recommended": "^8.0.0",
+    "stylelint-config-prettier": "9.0.3",
+    "stylelint-prettier": "2.0.0",
     "vitawind": "^2.2.4",
     "vite": "^3.0.0"
+  },
+  "dependencies": {
+    "vite-plugin-svgr": "2.2.0",
+    "@types/node": "^18.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
+    "eslint-import-resolver-typescript": "^3.2.5",
+    "typescript": "^4.7.4",
+    "vite-tsconfig-paths": "^3.5.0"
   }
 }
