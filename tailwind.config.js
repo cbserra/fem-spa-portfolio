@@ -1,11 +1,98 @@
 // const colors = require('tailwindcss/colors')
 
+// eslint-disable-next-line no-undef
 module.exports = {
   content: ["index.html", "./src/**/*.{js,jsx,ts,tsx,vue,html}"],
   theme: {
     extend: {
       screens: {
         lg: "1440px",
+      },
+      fontSize: {
+        "body-sm": [
+          "16px",
+          {
+            lineHeight: "26px",
+          },
+        ],
+        "body-md": [
+          "18px",
+          {
+            lineHeight: "28px",
+          },
+        ],
+        "button-sm": [
+          "16px",
+          {
+            lineHeight: "28px",
+          },
+        ],
+        "button-md": [
+          "18px",
+          {
+            lineHeight: "28px",
+          },
+        ],
+        sm: [
+          "14px",
+          {
+            lineHeight: "28px",
+          },
+        ],
+        md: [
+          "24px",
+          {
+            lineHeight: "30px",
+          },
+        ],
+        lg: [
+          "26px",
+          {
+            lineHeight: "33px",
+          },
+        ],
+        "header-sm": [
+          "24px",
+          {
+            lineHeight: "30px",
+          },
+        ],
+        "header-md": [
+          "26px",
+          {
+            lineHeight: "33px",
+          },
+        ],
+        "header-lg": [
+          "32px",
+          {
+            lineHeight: "40px",
+          },
+        ],
+        "header-xl": [
+          "36px",
+          {
+            lineHeight: "45px",
+          },
+        ],
+        "header-2xl": [
+          "40px",
+          {
+            lineHeight: "51px",
+          },
+        ],
+        "header-3xl": [
+          "44px",
+          {
+            lineHeight: "55px",
+          },
+        ],
+        "header-4xl": [
+          "56px",
+          {
+            lineHeight: "71px",
+          },
+        ],
       },
     },
     colors: {
@@ -30,38 +117,6 @@ module.exports = {
     },
     fontFamily: {
       sans: ["Plus Jakarta Sans", "sans-serif"],
-    },
-    fontSize: {
-      xl: [
-        "36px",
-        {
-          lineHeight: "45px",
-        },
-      ],
-      body: [
-        "16px",
-        {
-          lineHeight: "26px",
-        },
-      ],
-      sm: [
-        "14px",
-        {
-          lineHeight: "28px",
-        },
-      ],
-      md: [
-        "24px",
-        {
-          lineHeight: "30px",
-        },
-      ],
-      lg: [
-        "26px",
-        {
-          lineHeight: "33px",
-        },
-      ],
     },
   },
   plugins: [],

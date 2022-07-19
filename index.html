@@ -11,13 +11,6 @@
       href="./assets/favicon-32x32.png"
     />
 
-    <!-- <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
-    />
-
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script> -->
-
     <link rel="stylesheet" href="./assets/index.css" />
 
     <title>Frontend Mentor | Single-page design portfolio</title>
@@ -46,27 +39,27 @@
       </div>
     </header>
 
-    <nav>
-      <!-- <div class="container"> -->
-      <div class="graphic-design">Graphic Design</div>
-      <div class="ui-ux">UI/UX</div>
-      <div class="apps">Apps</div>
-      <div class="illustrations">Illustrations</div>
-      <div class="photography">Photography</div>
-      <div class="motion-graphics">Motion Graphics</div>
-      <!-- </div> -->
-      <!-- <ul>
-        <li class="graphic-design">Graphic Design</li>
-        <li class="ui-ux">UI/UX</li>
-        <li class="apps">Apps</li>
-        <li class="photography">Photography</li>
-        <li class="illustrations">Illustrations</li>
-        <li class="motion-graphics">Motion Graphics</li>
-      </ul> -->
-    </nav>
-
     <main>
-      <div class="amy-intro">
+      <nav>
+        <!-- <div class="container"> -->
+        <!-- <div class="graphic-design">Graphic Design</div>
+        <div class="ui-ux">UI/UX</div>
+        <div class="apps">Apps</div>
+        <div class="illustrations">Illustrations</div>
+        <div class="photography">Photography</div>
+        <div class="motion-graphics">Motion Graphics</div> -->
+        <!-- </div> -->
+        <ul>
+          <li class="graphic-design">Graphic Design</li>
+          <li class="ui-ux">UI/UX</li>
+          <li class="apps">Apps</li>
+          <li class="illustrations">Illustrations</li>
+          <li class="photography">Photography</li>
+          <li class="motion-graphics">Motion Graphics</li>
+        </ul>
+      </nav>
+
+      <section class="amy-intro">
         <img src="./assets/image-amy.webp" class="amy-img" alt="Amy" />
         <div>
           <h2>I’m Amy, and I’d love to work on your next project</h2>
@@ -79,34 +72,33 @@
 
           <button class="light-red-btn">Free Consultation</button>
         </div>
-      </div>
-    </main>
+      </section>
 
-    <section class="my-work">
-      <h3>My Work</h3>
+      <section class="my-work">
+        <h3>My Work</h3>
 
-      <div class="carousel">
-        <div class="carousel__track-container">
-          <ul class="carousel__track">
-            <li class="carousel__slide carousel__slide-1">
-              <img src="./assets/image-slide-1.jpg" alt="Slide 1" />
-            </li>
-            <li class="carousel__slide carousel__slide-2">
-              <img src="./assets/image-slide-2.jpg" alt="Slide 2" />
-            </li>
-            <li class="carousel__slide carousel__slide-3 current-slide">
-              <img src="./assets/image-slide-3.jpg" alt="Slide 3" />
-            </li>
-            <li class="carousel__slide carousel__slide-4">
-              <img src="./assets/image-slide-4.jpg" alt="Slide 4" />
-            </li>
-            <li class="carousel__slide carousel__slide-5">
-              <img src="./assets/image-slide-5.jpg" alt="Slide 5" />
-            </li>
-          </ul>
-        </div>
-        <div class="carousel__nav">
-          <!-- <svg width="15" height="16" xmlns="http://www.w3.org/2000/svg">
+        <div class="carousel">
+          <div class="carousel__track-container">
+            <ul class="carousel__track">
+              <li class="carousel__slide carousel__slide-1">
+                <img src="./assets/image-slide-1.jpg" alt="Slide 1" />
+              </li>
+              <li class="carousel__slide carousel__slide-2">
+                <img src="./assets/image-slide-2.jpg" alt="Slide 2" />
+              </li>
+              <li class="carousel__slide carousel__slide-3 current-slide">
+                <img src="./assets/image-slide-3.jpg" alt="Slide 3" />
+              </li>
+              <li class="carousel__slide carousel__slide-4">
+                <img src="./assets/image-slide-4.jpg" alt="Slide 4" />
+              </li>
+              <li class="carousel__slide carousel__slide-5">
+                <img src="./assets/image-slide-5.jpg" alt="Slide 5" />
+              </li>
+            </ul>
+          </div>
+          <div class="carousel__nav">
+            <!-- <svg width="15" height="16" xmlns="http://www.w3.org/2000/svg">
               <path
                 fill="currentColor"
                 d="M8 0 0 8l8 8 1.687-1.687-5.121-5.12h10.241V6.807H4.566l5.121-5.12z"
@@ -118,30 +110,34 @@
                 d="m6.808 16 8-8-8-8-1.687 1.687 5.121 5.12H.001v2.386h10.241l-5.121 5.12z"
               />
             </svg> -->
-          <button class="carousel__nav-btn black-btn carousel__nav-prev">
-            <img src="./assets/icon-arrow-left.svg" alt="Previous" />
-          </button>
-          <button class="carousel__nav-btn black-btn carousel__nav-next">
-            <img src="./assets/icon-arrow-right.svg" alt="Next" />
-          </button>
+            <button class="carousel__nav-btn black-btn carousel__nav-prev">
+              <img src="./assets/icon-arrow-left.svg" alt="Previous" />
+            </button>
+            <button class="carousel__nav-btn black-btn carousel__nav-next">
+              <img src="./assets/icon-arrow-right.svg" alt="Next" />
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section class="book-call">
+        <div class="book-call-content">
+          <div class="text">
+            <h2>Book a call with me</h2>
+
+            <p>
+              I’d love to have a chat to see how I can help you. The best first
+              step is for us to discuss your project during a free consultation.
+              Then we can move forward from there.
+            </p>
+          </div>
+
+          <button class="light-red-btn">Free Consultation</button>
+        </div>
+      </section>
+    </main>
 
     <footer>
-      <div class="book-call">
-        <div class="text">
-          <h2>Book a call with me</h2>
-
-          <p>
-            I’d love to have a chat to see how I can help you. The best first
-            step is for us to discuss your project during a free consultation.
-            Then we can move forward from there.
-          </p>
-        </div>
-
-        <button class="light-red-btn">Free Consultation</button>
-      </div>
       <div class="footer-container">
         <div class="logo-container">
           <img src="/assets/logo.svg" alt="Frontend Mentor" />
@@ -154,7 +150,18 @@
         </div>
         <button class="black-btn">Free Consultation</button>
       </div>
+      <div class="attribution">
+        <p>
+          Challenge by
+          <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">
+            Frontend Mentor
+          </a>
+          . Coded by
+          <a href="https://www.frontendmentor.io/profile/cbserra">Chris Serra</a
+          >.
+        </p>
+      </div>
     </footer>
   </body>
-  <script src="./assets/index.ts" type="module"></script>
+  <script src="./src/index.ts" type="module"></script>
 </html>
