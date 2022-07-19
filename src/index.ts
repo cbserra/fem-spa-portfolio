@@ -1,6 +1,9 @@
 import { Carousel, NavDirection, NullableHTMLLIElement } from "./types";
 
-const getDifference = (currentSlidePosition, nextSlidePosition) => {
+const getDifference = (
+  currentSlidePosition: number,
+  nextSlidePosition: number
+) => {
   if (currentSlidePosition * nextSlidePosition > 0) {
     return currentSlidePosition > nextSlidePosition
       ? Math.abs(currentSlidePosition) - Math.abs(nextSlidePosition)
