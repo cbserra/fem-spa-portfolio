@@ -27,9 +27,12 @@ export class Carousel {
   private trackContainer: HTMLDivElement;
   private track: HTMLUListElement;
   private currentSlide: HTMLLIElement;
+  private currentSlideInitialIndex: number;
   private newSlide?: HTMLLIElement | null;
   private prevBtn: HTMLButtonElement;
   private nextBtn: HTMLButtonElement;
+
+  private readonly CURRENT_SLIDE_CLASS_NAME = "current-slide";
 
   constructor(
     carousel: HTMLDivElement,
@@ -43,8 +46,9 @@ export class Carousel {
     this.trackContainer = trackContainer;
     this.track = track;
     this.currentSlide = currentSlide;
-    this.setPrevBtn(prevBtn);
-    this.setNextBtn(nextBtn);
+    this.currentSlideInitialIndex = this.getSlideIndex(this.currentSlide);
+    this.prevBtn = prevBtn;
+    this.nextBtn = nextBtn;
   }
 
   public getCarouselContainer(): HTMLDivElement {
@@ -68,43 +72,57 @@ export class Carousel {
   }
 
   public updateCurrentSlideWithNew(newSlide: HTMLLIElement): void {
-    this.getCurrentSlide()?.classList.remove("current-slide");
-    newSlide?.classList.add("current-slide");
+    this.getCurrentSlide()?.classList.remove(this.CURRENT_SLIDE_CLASS_NAME);
+    newSlide?.classList.add(this.CURRENT_SLIDE_CLASS_NAME);
 
     this.setCurrentSlide(newSlide);
     this.setNewSlide(null);
+  }
+
+  public resetCurrentSlide(): void {
+    this.updateCurrentSlideWithNew(
+      this.getSlides()[this.currentSlideInitialIndex]
+    );
+  }
+
+  public resetTrackTransform(): void {
+    this.track.style.transform = "";
+  }
+
+  public getTrackTransform(): string {
+    return this.track.style.transform;
+  }
+
+  public setTrackTransform(pixelValue: number): void {
+    this.track.style.transform = `translateX(${pixelValue}px)`;
   }
 
   private setCurrentSlide(currentSlide: HTMLLIElement): void {
     this.currentSlide = currentSlide;
   }
 
-  public getPrevBtn(): HTMLButtonElement {
-    return this.prevBtn;
+  public getCurrentSlideInitialIndex(): number {
+    return this.currentSlideInitialIndex;
   }
 
-  private setPrevBtn(prevBtn: HTMLButtonElement): void {
-    this.prevBtn = prevBtn;
+  public getPrevBtn(): HTMLButtonElement {
+    return this.prevBtn;
   }
 
   public getNextBtn(): HTMLButtonElement {
     return this.nextBtn;
   }
 
-  private setNextBtn(nextBtn: HTMLButtonElement): void {
-    this.nextBtn = nextBtn;
+  public getSlides(): HTMLCollectionOf<HTMLLIElement> {
+    return this.track.children as HTMLCollectionOf<HTMLLIElement>;
   }
 
-  public getSlides(): HTMLCollectionOf<HTMLDivElement> {
-    return this.track.children as HTMLCollectionOf<HTMLDivElement>;
-  }
-
-  public getSlideImages(): NullableHTMLImageElement[] {
-    const slides = this.getSlides();
-    return Array.from(slides).flatMap((slide) =>
-      slide.getElementsByTagName("img").item(0)
-    );
-  }
+  // public getSlideImages(): NullableHTMLImageElement[] {
+  //   const slides = this.getSlides();
+  //   return Array.from(slides).flatMap((slide) =>
+  //     slide.getElementsByTagName("img").item(0)
+  //   );
+  // }
 
   public getNewSlide(): NullableHTMLLIElement {
     return this.newSlide;
@@ -112,5 +130,9 @@ export class Carousel {
 
   public setNewSlide(nextSlide: NullableHTMLLIElement): void {
     this.newSlide = nextSlide;
+  }
+
+  private getSlideIndex(slide: HTMLLIElement): number {
+    return Array.from(this.getSlides()).indexOf(slide);
   }
 }

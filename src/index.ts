@@ -59,33 +59,42 @@ const calculateTrackMovement = (
   carousel: Carousel,
   direction: NavDirection
 ): number => {
+  const track = carousel.getTrack();
+  const trackTransformValue = track.style.transform;
+
+  const start = !trackTransformValue
+    ? 0
+    : parseInt(trackTransformValue.split("(")[1].split(")")[0].split("px")[0]);
+
   const currSlide = carousel.getCurrentSlide();
   const nxtSlide = carousel.getNewSlide();
 
   const currentLeft = currSlide?.getBoundingClientRect().left ?? 0;
-  console.log("🚀 ~ file: index.ts ~ line 76 ~ currentLeft", currentLeft);
   const nextLeft = nxtSlide?.getBoundingClientRect().left ?? 0;
-  console.log("🚀 ~ file: index.ts ~ line 78 ~ nextLeft", nextLeft);
 
   const amountToMove = getDifference(currentLeft, nextLeft);
-  console.log("🚀 ~ file: index.ts ~ line 81 ~ amountToMove", amountToMove);
 
-  const trackLeft = carousel.getTrack().getBoundingClientRect().left;
-  console.log("🚀 ~ file: index.ts ~ line 84 ~ trackLeft", trackLeft);
-  if (direction === NavDirection.NEXT) {
-    console.log(
-      "🚀 ~ file: index.ts ~ line 91 ~ trackLeft - amountToMove",
-      trackLeft - amountToMove
-    );
-    return trackLeft - amountToMove;
-  } else {
-    console.log(
-      "🚀 ~ file: index.ts ~ line 94 ~ trackLeft + amountToMove",
-      trackLeft + amountToMove
-    );
-    return trackLeft + amountToMove;
-  }
+  const transformPixels =
+    direction === NavDirection.NEXT
+      ? start - amountToMove
+      : start + amountToMove;
+  return transformPixels;
 };
+
+// const trackLeft = carousel.getTrack().getBoundingClientRect().left;
+// if (direction === NavDirection.NEXT) {
+//   console.log(
+//     "🚀 ~ file: index.ts ~ line 91 ~ trackLeft - amountToMove",
+//     trackLeft - amountToMove
+//   );
+//   return trackLeft - amountToMove;
+// } else {
+//   console.log(
+//     "🚀 ~ file: index.ts ~ line 94 ~ trackLeft + amountToMove",
+//     trackLeft + amountToMove
+//   );
+//   return trackLeft + amountToMove;
+// }
 
 // const alignTrackWithCurrentSlide = (carousel: Carousel): void => {
 //   const trackLeft = carousel.getTrack().getBoundingClientRect().left;
@@ -109,7 +118,7 @@ const moveToSlide = (
 
     const trackMovement = calculateTrackMovement(carousel, direction);
 
-    transformTrack(carousel, trackMovement);
+    carousel.setTrackTransform(trackMovement);
     carousel.updateCurrentSlideWithNew(newSlide);
 
     if (endOfSlides(carousel, direction)) {
@@ -170,27 +179,15 @@ const endOfSlides = (carousel: Carousel, direction: NavDirection): boolean => {
 //   }
 // };
 
-const transformTrack = (carousel: Carousel, pixels: number): void => {
-  console.log(
-    "🚀 ~ file: index.ts ~ line 163 ~ transformTrack ~ pixels",
-    pixels
-  );
-  console.log(
-    "🚀 ~ file: index.ts ~ line 164 ~ transformTrack ~ track BEFORE",
-    carousel.getTrack().getBoundingClientRect()
-  );
+// const transformTrack = (carousel: Carousel, pixels: number): void => {
 
-  carousel.getTrack().style.transform = "translateX(" + pixels + "px)";
+//   carousel.getTrack().style.transform = "translateX(" + pixels + "px)";
 
-  setTimeout(() => {
-    console.log(
-      "🚀 ~ file: index.ts ~ line 169 ~ transformTrack ~ track AFTER",
-      carousel.getTrack().getBoundingClientRect()
-    );
-  }, 1000);
-};
+//   setTimeout(() => {
+//   }, 1000);
+// };
 
-const setupCarousel = (): void => {
+const setupCarousel = (): Carousel => {
   const carouselDiv = document.querySelector(".carousel") as HTMLDivElement;
   const trackContainer = carouselDiv?.querySelector(
     ".carousel__track-container"
@@ -217,7 +214,7 @@ const setupCarousel = (): void => {
 
   // alignTrackWithCurrentSlide(car);
   // car.init();
-  debug(car);
+  // debug(car);
 
   car
     .getNextBtn()
@@ -230,9 +227,36 @@ const setupCarousel = (): void => {
     .addEventListener("click", (evt) =>
       moveToSlide(evt, car, NavDirection.PREV)
     );
+
+  return car;
 };
 
-setupCarousel();
+class CarouselHolder {
+  private carousel: Carousel;
+  constructor(carousel: Carousel) {
+    this.carousel = carousel;
+  }
+  public getCarousel(): Carousel {
+    return this.carousel;
+  }
+  public setCarousel(carousel: Carousel): void {
+    this.carousel = carousel;
+  }
+  public hasInstance(): boolean {
+    return this.carousel !== undefined;
+  }
+}
+
+const carouselHolder = new CarouselHolder(setupCarousel());
+
+window.addEventListener("resize", (evt) => {
+  if (evt?.type === "resize" && carouselHolder.hasInstance()) {
+    const carousel = carouselHolder.getCarousel();
+    carousel.resetCurrentSlide();
+    carousel.resetTrackTransform();
+    enableButtons(carousel);
+  }
+});
 
 // prev button will slide the track to the left, or go to the end if we're at the beginning
 // next button will slide the track to the right, or start over if we're at the end
