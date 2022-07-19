@@ -25,6 +25,8 @@
   aside,
   section {
     @apply flex w-full max-w-[1110px] flex-col items-center justify-center gap-y-8;
+    @apply md:gap-y-16;
+    @apply lg:gap-y-[66px];
     /* @apply px-4; */
     /* @apply md:px-[40px];
     @apply lg:px-[164px];  */
