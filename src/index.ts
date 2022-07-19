@@ -14,7 +14,7 @@ const getDifference = (currentSlidePosition, nextSlidePosition) => {
 const debug = (car: Carousel): void => {
   console.debug(
     "🚀 ~ file: index.ts ~ line 29 ~ debug ~ car.getCarouselContainer",
-    car.getCarouselContainer
+    car.getCarouselContainer()
   );
   console.debug(
     "🚀 ~ file: index.ts ~ line 28 ~ debug ~ car.getPrevBtn()",
@@ -24,27 +24,22 @@ const debug = (car: Carousel): void => {
     "🚀 ~ file: index.ts ~ line 29 ~ debug ~ car.getNextBtn()",
     car.getNextBtn()
   );
+  console.log(
+    "🚀 ~ file: index.ts ~ line 29 ~ debug ~ car.getTrackContainer();",
+    car.getTrackContainer()
+  );
 
-  const track = car.getTrack();
   console.debug(
-    "🚀 ~ file: index.ts ~ line 31 ~ debug ~ track.getBoundingClientRect()",
-    track.getBoundingClientRect()
+    "🚀 ~ file: index.ts ~ line 31 ~ debug ~ car.getTrack().getBoundingClientRect()",
+    car.getTrack().getBoundingClientRect()
   );
   console.debug(
-    "🚀 ~ file: index.ts ~ line 34 ~ debug ~ track.getBoundingClientRect().left",
-    track.getBoundingClientRect().left
+    "🚀 ~ file: index.ts ~ line 35 ~ debug ~ car.getCurrentSlide().getBoundingClientRect()",
+    car.getCurrentSlide().getBoundingClientRect()
   );
   console.debug(
-    "🚀 ~ file: index.ts ~ line 35 ~ debug ~ track.getBoundingClientRect().width",
-    track.getBoundingClientRect().width
-  );
-  console.debug(
-    '🚀 ~ file: index.ts ~ line 35 ~ debug ~ track.querySelector(".current-slide")',
-    track.querySelector(".current-slide")
-  );
-  console.debug(
-    '🚀 ~ file: index.ts ~ line 38 ~ debug ~ track?.querySelector(".current-slide")?.getBoundingClientRect().left',
-    track?.querySelector(".current-slide")?.getBoundingClientRect().left
+    "🚀 ~ file: index.ts ~ line 38 ~ debug ~ car.getNewSlide()?.getBoundingClientRect()",
+    car.getNewSlide()?.getBoundingClientRect()
   );
 };
 
@@ -92,6 +87,16 @@ const calculateTrackMovement = (
   }
 };
 
+// const alignTrackWithCurrentSlide = (carousel: Carousel): void => {
+//   const trackLeft = carousel.getTrack().getBoundingClientRect().left;
+//   const currentSlideLeft = carousel
+//     .getCurrentSlide()
+//     .getBoundingClientRect().left;
+//   const difference = currentSlideLeft - trackLeft;
+
+//   transformTrack(carousel, difference);
+// };
+
 const moveToSlide = (
   _event: MouseEvent,
   carousel: Carousel,
@@ -132,7 +137,7 @@ const disableButton = (carousel: Carousel, direction: NavDirection): void => {
 const endOfSlides = (carousel: Carousel, direction: NavDirection): boolean => {
   const currentSlide = carousel.getCurrentSlide();
 
-  let endOfSlides;
+  let endOfSlides: boolean;
   if (direction === NavDirection.NEXT) {
     endOfSlides = currentSlide.nextElementSibling === null;
   } else {
@@ -209,7 +214,10 @@ const setupCarousel = (): void => {
     prevBtn,
     nextBtn
   );
+
+  // alignTrackWithCurrentSlide(car);
   // car.init();
+  debug(car);
 
   car
     .getNextBtn()
