@@ -9,8 +9,7 @@
     "lint:styles": "stylelint ./**/*.{css,scss}",
     "format:scripts": "prettier . --write",
     "format:styles": "stylelint ./**/*.{css,scss} --fix",
-    "format": "yarn format:scripts && yarn format:styles",
-    "prepare": "husky install && husky add .husky/pre-commit 'npx lint-staged' && git add .husky/pre-commit"
+    "format": "yarn format:scripts && yarn format:styles"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
@@ -26,14 +25,13 @@
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.12",
     "stylelint": "^14.9.1",
+    "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-recommended": "^8.0.0",
-    "stylelint-config-prettier": "9.0.3",
-    "stylelint-prettier": "2.0.0",
+    "stylelint-prettier": "^2.0.0",
     "vitawind": "^2.2.4",
     "vite": "^3.0.0"
   },
   "dependencies": {
-    "vite-plugin-svgr": "2.2.0",
     "@types/node": "^18.0.3",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
