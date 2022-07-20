@@ -47,7 +47,7 @@
   /* header, */
   footer,
   header {
-    @apply flex w-full justify-between;
+    @apply justify-between;
     /* @apply px-4; */
   }
 
@@ -108,7 +108,7 @@
 @layer components {
   .header-container,
   .footer-container {
-    @apply flex w-full justify-between;
+    @apply flex w-full items-center justify-between;
   }
   .logo-container {
     @apply h-12 w-12;
@@ -167,12 +167,13 @@
     /* @apply gap-y-8; */
     /* @apply md:mt-14 ; */
     @apply md:flex-row;
-    /* @apply md:gap-x-[69px]; */
+    @apply md:gap-x-20;
+    @apply md:-ml-12;
   }
 
   .amy-img {
     @apply mb-[40px] h-[300px] w-[300px];
-    @apply md:h-[364px] md:w-[364px];
+    @apply md:mb-0 md:-ml-11 md:h-[364px] md:w-[364px];
     @apply lg:h-[445px] lg:w-[445px];
     /* @apply md:-translate-x-20;
     @apply lg:translate-x-0; */
@@ -208,13 +209,18 @@
   }
 
   .carousel__track {
-    @apply relative -mx-4 flex h-full w-full  items-center justify-evenly gap-x-[15px] transition-transform duration-500 ease-in-out;
+    @apply relative -mx-4 flex h-full w-full  items-center justify-evenly gap-x-[15px] transition-all duration-500 ease-in-out;
     @apply md:gap-x-[30px];
+    @apply scroll-smooth;
   }
 
   .carousel__slide {
     @apply relative top-0 bottom-0 h-full w-[270px];
     @apply md:w-[540px];
+  }
+
+  .current-slide {
+    @apply transition-transform duration-500 ease-in-out hover:scale-105;
   }
 
   .carousel__slide img {
@@ -235,10 +241,6 @@
     @apply max-w-none;
   }
 
-  .carousel-item {
-    @apply h-[160px] w-[270px];
-  }
-
   .book-call {
     /* @apply mt-[68px] ; */
     /* @apply mb-2; */
@@ -255,12 +257,12 @@
     @apply flex w-full max-w-screen-lg flex-col items-center justify-center gap-y-8;
     @apply md:px-[75px] md:pt-14 md:pb-16;
     /* @apply lg:px-[164px] ; */
-    @apply lg:flex-row lg:justify-between lg:pb-16 lg:pl-[65px] lg:pr-[95px];
+    @apply lg:flex-row lg:justify-between lg:py-20 lg:pl-[65px] lg:pr-[95px];
   }
 
   .book-call-content > .text {
     @apply flex w-full flex-col items-center justify-center gap-y-6 text-center;
-    @apply lg:w-1/2  lg:w-[540px] lg:items-start lg:text-left;
+    @apply lg:w-[540px] lg:items-start lg:text-left;
   }
 
   .book-call-content > .text > p {
